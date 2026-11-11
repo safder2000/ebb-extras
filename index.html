@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ebb Extras</title>
+<meta name="description" content="Call recording, app limits, places and the unlock guard for Ebb.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2311161a'/%3E%3Cpath d='M7 12c3-3 6 3 9 0s6 3 9 0M7 17c3-3 6 3 9 0s6 3 9 0M7 22c3-3 6 3 9 0s6 3 9 0' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f6f4;
+    --panel: #ffffff;
+    --ink: #111315;
+    --muted: #5d6268;
+    --hair: #e3e3df;
+    --accent: #138a7e;
+    --on-accent: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0b0c0e;
+      --panel: #16181b;
+      --ink: #f1f2f3;
+      --muted: #a2a7ad;
+      --hair: #26292d;
+      --accent: #3cc8b4;
+      --on-accent: #06221e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0b0c0e;
+    --panel: #16181b;
+    --ink: #f1f2f3;
+    --muted: #a2a7ad;
+    --hair: #26292d;
+    --accent: #3cc8b4;
+    --on-accent: #06221e;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 Geist, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 56px 16px 40px;
+    display: grid;
+    gap: 40px;
+  }
+  @media (min-width: 760px) {
+    main { grid-template-columns: 1fr 260px; align-items: start; padding-top: 96px; }
+  }
+  .mark { width: 48px; height: 48px; border-radius: 13px; background: var(--ink); display: grid; place-items: center; }
+  .mark svg { width: 28px; height: 28px; stroke: var(--bg); }
+  h1 { font-size: 40px; line-height: 1.1; letter-spacing: -0.03em; margin: 22px 0 10px; font-weight: 700; }
+  .lead { font-size: 18px; color: var(--muted); margin: 0 0 28px; max-width: 30em; }
+  .dl {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: var(--on-accent);
+    font-weight: 600; font-size: 17px; text-decoration: none;
+    padding: 15px 24px; border-radius: 14px;
+  }
+  .dl:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .dl svg { width: 20px; height: 20px; }
+  .meta { color: var(--muted); font-size: 14px; margin: 12px 0 0; }
+  ol { margin: 40px 0 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 14px; max-width: 34em; }
+  ol li { counter-increment: s; display: grid; grid-template-columns: 28px 1fr; gap: 12px; }
+  ol li::before {
+    content: counter(s); width: 28px; height: 28px; border-radius: 50%;
+    border: 1px solid var(--hair); display: grid; place-items: center;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+  }
+  ol b { font-weight: 600; }
+  .note { color: var(--muted); }
+  .qr {
+    display: none;
+    background: var(--panel); border: 1px solid var(--hair); border-radius: 20px;
+    padding: 20px; text-align: center;
+  }
+  @media (min-width: 760px) { .qr { display: block; } }
+  .qr .tile { background: #fff; border-radius: 12px; padding: 14px; }
+  .qr svg { display: block; width: 100%; height: auto; }
+  .qr p { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+  footer { grid-column: 1 / -1; border-top: 1px solid var(--hair); padding-top: 20px; font-size: 14px; color: var(--muted); }
+  footer a { color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+  <section>
+    <div class="mark" aria-hidden="true">
+      <svg viewBox="0 0 28 28" fill="none" stroke-width="2.2" stroke-linecap="round">
+        <path d="M4 9c3-3 6 3 10 0s7 3 10 0M4 14c3-3 6 3 10 0s7 3 10 0M4 19c3-3 6 3 10 0s7 3 10 0"/>
+      </svg>
+    </div>
+    <h1>Ebb Extras</h1>
+    <p class="lead">Call recording, app limits, places and the unlock guard for Ebb.</p>
+
+    <a class="dl" href="https://github.com/safder2000/ebb-extras/releases/latest/download/ebb-extras.apk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>
+      </svg>
+      Download
+    </a>
+    <p class="meta"><span id="ver">Android 10 or newer</span> · Needs Ebb</p>
+
+    <ol>
+      <li><span>Open the downloaded file. If Android asks, <b>allow your browser to install apps</b>.</span></li>
+      <li><span>Open Ebb → <b>Setup</b> → <b>Ebb Extras</b>, and tap Allow on what you use.</span></li>
+      <li><span class="note">Accessibility switch greyed out? Settings → Apps → Ebb Extras → ⋮ → <b>Allow restricted settings</b>.</span></li>
+    </ol>
+  </section>
+
+  <aside class="qr">
+    <div class="tile" role="img" aria-label="QR code for this page">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 33 33" shape-rendering="crispEdges"><path stroke="#000" d="M0 0.5h7m2 0h3m3 0h1m1 0h3m2 0h7m-29 1h1m5 0h1m1 0h1m1 0h3m2 0h1m1 0h1m1 0h1m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m3 0h3m1 0h1m3 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h3m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m2 0h2m3 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m5 0h2m1 0h1m1 0h4m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h2m1 0h4m1 0h3m-20 1h1m1 0h1m1 0h1m1 0h1m4 0h3m1 0h1m1 0h1m1 0h2m3 0h1m2 0h1m-26 1h2m1 0h1m1 0h1m2 0h5m1 0h2m2 0h3m2 0h1m2 0h1m-29 1h2m1 0h4m2 0h1m2 0h3m2 0h2m2 0h2m1 0h1m1 0h3m-28 1h1m2 0h1m2 0h4m2 0h5m2 0h1m6 0h1m-26 1h1m1 0h1m1 0h1m2 0h1m3 0h2m1 0h3m1 0h3m2 0h1m1 0h2m-28 1h2m5 0h4m4 0h1m3 0h1m1 0h1m2 0h1m2 0h1m-29 1h1m1 0h1m1 0h4m1 0h3m1 0h1m3 0h1m2 0h1m1 0h1m2 0h1m1 0h2m-28 1h2m1 0h2m2 0h1m1 0h8m2 0h3m2 0h1m1 0h1m-28 1h3m2 0h2m3 0h3m1 0h4m1 0h2m1 0h1m2 0h1m1 0h2m-27 1h1m1 0h1m4 0h5m8 0h1m2 0h2m1 0h1m-29 1h1m2 0h2m1 0h2m3 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h2m-28 1h2m4 0h3m3 0h1m3 0h3m1 0h3m1 0h1m1 0h1m-28 1h1m2 0h4m1 0h1m5 0h1m1 0h2m2 0h5m-17 1h4m4 0h1m3 0h1m3 0h1m1 0h3m-29 1h7m6 0h1m2 0h2m1 0h2m1 0h1m1 0h2m1 0h2m-29 1h1m5 0h1m4 0h1m5 0h4m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h1m2 0h1m4 0h3m1 0h5m-25 1h1m1 0h3m1 0h1m2 0h1m3 0h1m2 0h1m2 0h1m1 0h1m1 0h2m1 0h3m-29 1h1m1 0h3m1 0h1m1 0h1m4 0h2m2 0h1m2 0h2m1 0h3m2 0h1m-29 1h1m5 0h1m4 0h2m1 0h5m1 0h2m2 0h1m2 0h1m-28 1h7m1 0h1m3 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h2"/></svg>
+    </div>
+    <p>On a computer? Scan with your phone.</p>
+  </aside>
+
+  <footer>
+    No internet access; recordings stay on your phone.
+    <a href="https://github.com/safder2000/ebb-extras#permissions">Permissions and details</a>
+  </footer>
+</main>
+<script>
+  // Show the latest version and size; the static text stays if GitHub can't be reached.
+  (async () => {
+    try {
+      const r = await fetch('https://api.github.com/repos/safder2000/ebb-extras/releases/latest');
+      if (!r.ok) return;
+      const rel = await r.json();
+      const apk = (rel.assets || []).find(a => a.name === 'ebb-extras.apk');
+      const mb = apk ? ` · ${(apk.size / 1048576).toFixed(1)} MB` : '';
+      document.getElementById('ver').textContent = `Version ${String(rel.tag_name || '').replace(/^v/, '')}${mb}`;
+    } catch (_) {}
+  })();
+</script>
+</body>
+</html>
