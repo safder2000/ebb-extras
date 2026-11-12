@@ -16,7 +16,7 @@ Get the APK from [Releases](../../releases/latest).
 
 ## Install
 
-1. Install **Ebb** first.
+1. Install **Ebb** (0.3.1 or newer) first. Android 12 or newer if your Ebb came from Google Play.
 2. Download `ebb-extras-<version>.apk` on the phone and open it. Allow your browser or file manager to install apps
    if Android asks.
 3. Open Ebb → **Setup**. An **Ebb Extras** section lists what each feature needs. Tap **Allow** on the ones you use.
