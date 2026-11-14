@@ -24,6 +24,13 @@ Get the APK from [Releases](../../releases/latest).
    it. If the switch is greyed out: Settings → Apps → Ebb Extras → ⋮ (top right) → **Allow restricted settings**,
    then try again.
 
+## Google Pay and banking apps
+
+Payment apps block payments while an app installed from a file has accessibility turned on. If you only need call
+recording, open Ebb Extras → **Payment apps** → **Accessibility only during calls**: the service stays off and turns on
+only while a call records. It needs a one-time setup from a computer (the screen shows the steps and the command).
+App limits don't work in this mode.
+
 ## Permissions
 
 Each one is asked only when you tap Allow, with a short explanation first.
